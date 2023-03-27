@@ -1,0 +1,138 @@
+Author: Ioan Yosef Balachandran
+Data source: https://github.com/mattbrattin/Excel-for-Analytics/blob/main/Excel%20for%20Analytics%20Project%20Series%20Source%20File.xlsx
+Data source-file name: Excel for Analytics Project Series Source File
+
+
+VERSION CONTROL: Volume_by_Region_Data_Request_v1
+Date: Jan 26, 2023
+
+
+Created duplicates of dataset sheets in Excel, renamed original sheets with the addition of "OG" for original, hid both sheets
+
+EXT0070122021 (OG): renamed duplicate of sheet as "VolumeData"
+Sheet3 (OG): renamed duplicate of sheet as "GeoData"
+
+
+Dataset Changes-VolumeData:
+-Unwrapped entire spreadsheet
+-Tabled data with with ctrl + t, table name: VolumeByClient
+-CL##### (Client ID) is not filled in every record of column: used "Find & Select" icon to fill in blanks with cell referencing
+-Copied CL##### column and pasted values only back into same column to remove cell referencing
+-Renamed CL#### to "Client ID"
+-Renamed Vol to "Volume"
+-All 3 columns are foreign keys: each column was copied into a separate column in spreadsheet, "Remove Duplicates" feature was applied to confirm duplicates within each column
+-Filter options for Date field does not indicate grouping of dates by year: used "Text to Columns" feature to convert to date format
+-Right aligned Date column header
+-Volume field had numbers in text format: converted to number format with "Text to Columns" feature, added separating commas for 1000s
+-Right aligned Volume column header
+
+Dataset Changes-GeoData:
+-Unwrapped entire spreadsheet
+-Tabled data with with ctrl + t, table name: GeoIDbyClientID
+-Client ID appears to be a primary key based on visual confirmation that GeoID has duplicate values: Client ID column was confirmed to have no duplicates with the "Remove Duplicates" feature
+-Client ID field consisted of prefix "C-" in every record apparently, used LEN function in temporary column to confirm consistency in every record with the filter dropdown of the column.
+-Client ID records' update: used "Find & Select" to replace "C-" with null, 53 replacements were made
+
+
+Exploratory Data Analysis:
+-Descriptive Statistics was calculated for the numerical variable, Volume.
+-A tabular frequency distribution was created for the cateogorical variables of VolumeData and the cateogorical variables of GeoData (faded text). 
+-The aforementioned tables were used to count the number of distinctive entries of each feature and entered into Categorical Features table.
+-The list of distinctive Geo_IDs were tabulated by region names.
+
+
+MergedData:
+-CompleteData: Geo_ID field was appropriately merged by record to a copy of the original VolumeData.
+-VolumeByGeography: A secondary table was created to sum the volume by Geo_ID.
+-GeoNameIndex: A tertiary table was created to identify each Geo_ID by region name using the VolumeByGeography table.
+-Region_Name was added to the CompleteData table using the GeoNameIndex table.
+-The yearly quarters necessary for Q2 Analysis went unnoticed but were confirmed in the filter dropdown menu of the Date field.
+-A final column was added to the CompleteData table to indicate which quarter each date belonged to by record.
+
+
+
+
+
+VERSION CONTROL: Volume_by_Region_Data_Request_v2 - The following sheets were in addition to the existing sheets of the previous version.
+Date: Jan 26, 2023
+Note: There was a file issue with v1 so prior to proceeding with v2, v2 was resaved as a new file with file name "Volume_by_Region_Data_Request_v1".
+
+
+Quarterly Review:
+-RegionalQuarterlyData: A pivot table consisting of volume data by region with volume clustered quarterly for each year.
+-Clustered Bar-chart represents the data in pivot table.
+-Splicers, Quarter and Region_Name, were added for any further grouping of data by yearly quarters or regions.
+
+
+
+FurtherAnalysis1:
+-VolumeByPeriod: A tabulation of volume against all possible periods, i.e., year, quarters, months, and date, in pivot table.
+-Line chart displays periodical trends.
+-SeasonalDrop: A table was created to show drop from Q2 to Q3 seen across all regions.
+-Seasonal_Increase: A table was created to show the continual increase from Q3 to Q2 across the 2 years.
+-Seasonal_Increase_1: A table was created to show the continual increase from Q3 to Q2 across the 2 years as cumulative values.
+-VolumByRegion: Another pivot table consisting of volume data by region with volume clustered quarterly for each year.
+-YOY_Growth: A table for Year-over-year growth of Q1 and Q2, placed adjacent to VolumeByRegion table.
+-QOQ_Growth: A table for Quarter-over-quarter growth of Q1 and Q2 for each year, 2020 and 2021. 
+-FCST: A table displaying the forecasted volumes of Q2 2021 based on YOY and QOQ growths.
+-Waterfall Bar Chart-"Relative Gap from Expected Q2 2021 Volume": A chart visualizing the variance anomalies in the forecasted data.
+-RootCauseDataTable: A 2nd copy of the VolumByRegion pivot table with further formatting by client rows to visually view the data causing the variances. Conditional Formatting (CF) was applied to single-out missing volumes. Summed volumes were sorted in descending order.
+
+Date: Feb 05, 2023
+Note: A file error occurred in v2. The recovered file had to be resaved as a new file with the same file name. No data loss occurred.
+
+Continuing with FurtherAnalysis1:
+-RC_ClientCount: A table summarizing the RootCauseDataTable by client count of each region per quarter to numerate the clients with missing volumes.
+-RC_VolumeClientAverage: A table summarizing the RootCauseDataTable by averaging the total volumes by the number of clients per region for each quarter.
+-A small chart was drawn to display the YOY and QOQ growths relevant to Q2 2021 calculated from the volume-client averages.
+-Comment Blocks were created throughout the sheet for context and further explanation.
+
+
+
+FurtherAnalysis2:
+-An overview of the analysis to be carried out; premise, presuppositions, constituents for comparison, and proposition.
+-Primary and secondary comparison of YOY and QOQ FCSTs, respectively, in drawn charts.
+-RC_byAverages: A copy of the RootCauseDataTable that's been summarized by averages instead of sums. CF was applied to group together clients who averaged over 10k in their quarters.
+-A single-column chart was drawn with the header "Regional Client Rank by Average"--this chart was drawn upon noticing that the RC_byAverages table, when sorted in descending order by volumes, had clients with missing volumes rise higher on the table.
+
+Updated FurtherAnalysis1: A single-column chart with the header "Regional Client Rank by Sum" was added to juxtapose across both sheets the change in descending order of clients.
+
+Continuing with FurtherAnalysis2:
+-A table was drawn exclusively to group clients with missing volumes.
+-A table was drawn exclusively to group clients with missing volumes in Q2 2021 from the summation of volumes in the RootCauseDataTable.
+-Comment Blocks were created throughout the sheet for context and further explanation.
+-Relevant data-oriented conclusions were drawn for the proposition made.
+-A conclusion of the overview of the analysis that was carried out.
+-A table was drawn to forecast the current/upcoming Q3 2021 volumes.
+
+
+
+RCAnalysisSummary:
+-A detailed textual recount of RCA that was completed.
+
+
+
+
+
+VERSION CONTROL: Volume_by_Region_Data_Request_v3 - The following sheets were in addition to the existing sheets of the previous version.
+Date: Mar 07, 2023
+
+
+CL_Data:
+-Another pivot table, with this one listing every client in the rows and every volume transaction in the columns. 
+-This sheet was referenced in the subsequent Dashboard.
+-This sheet was also hidden within the workbook.
+
+
+
+Dashboard:
+-On the left side of this sheet are all of the static elements making up this viz. The left side displays an overview of the entire dataset.
+-On the right side of this sheet are all of the dynamic elements making up this viz. The right side displays an overview for understanding the variances of Q2 2021.
+-There is a dropdown menu and slicer for the dynamic side of this dashboard.
+-The images used to represent each region are PNG files downloaded from online sources. The sources have been saved in a csv file, "PNG Image Sources".
+
+
+
+***All sheets have been locked and protected but where applicable, some aspects have been left unlocked for user interaction.***
+
+Completion Date: Mar 14, 2023
