@@ -3,7 +3,7 @@ This is an excel workbook project analyzing a company's quarterly volumes by reg
 
 Github Data Source - Excel-for-Analytics: https://github.com/mattbrattin/Excel-for-Analytics/blob/main/Excel%20for%20Analytics%20Project%20Series%20Source%20File.xlsx
 
-Tutorial Video: https://www.youtube.com/watch?v=45_yTM1HfTc&t=7s
+Tutorial Video: https://www.youtube.com/watch?v=45_yTM1HfTc&t=7s (first video of a 4-part series)
 
 Note: 
 This was a guided project from YouTuber, Matt Brattin. The analysis and dashboard of this project exceeded that which was completed in the tutorial.
